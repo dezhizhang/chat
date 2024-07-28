@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user";
+
+message User{
+  // 用户id
+  string id = 1;
+  // 用户头像
+  string avatar = 2;
+  // 呢称
+  string nickname = 3;
+  // 密码
+  string password = 4;
+  // 姓名
+  string username = 5;
+  // 手机号
+  string phone = 6;
+  // 状态
+  int32 status = 7;
+  // 用户性别
+  int32 sex = 8;
+}
+
+message ULoginRequest{
+  string phone = 1;
+
+}
+
+message ULoginResponse{
+  string token = 1;
+}
+
+message URegisterRequest{
+  // 手机号
+  string phone = 1;
+  // 密码
+  string password = 2;
+  // 呢称
+  string nickname = 3;
+}
+
+message URegisterResponse{
+  // 消息
+  string msg = 1;
+  // 错误码
+  int32 code = 2;
+}
+
+
+
+
+service user {
+  // Login用户登录
+  rpc Login(ULoginRequest) returns(ULoginResponse);
+  // 用户注册
+  rpc Register(URegisterRequest) returns(URegisterResponse);
+}
+
+
